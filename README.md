@@ -1,0 +1,3 @@
+- cn_tdse.cc 为一维含时薛定谔方程（TDSE）求解程序， 使用 Crank-Nicolson 有限差分方法， 演化利用三对角矩阵的 Thomas 追赶法进行求解。 二维及以上则失去了三对角矩阵的优势。
+- cn_tdse.cc 为主程序， 直接执行 make 即可生成可执行程序 app， 执行 ./app 可获得计算结果 norm.dat （波函数）, time.dat （时间网格）与 grid.dat （空间网格）
+- 获得结果通过执行 python plot.py， 可生成动画
