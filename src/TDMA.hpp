@@ -1,6 +1,5 @@
 #pragma once
-#include <complex>
-#define complex std::complex<double>
+#include "Constants.hpp"
 
 // tri-diagonal matrix algorithm (Llewellyn Thomas's method)
 class TDMA {

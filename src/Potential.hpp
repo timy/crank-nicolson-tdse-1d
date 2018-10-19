@@ -1,8 +1,7 @@
 #pragma once
 #include "Grid.hpp"
+#include "Constants.hpp"
 #include <cstdio>
-#include <complex>
-#define complex std::complex<double>
 
 class Potential {
  public:

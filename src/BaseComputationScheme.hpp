@@ -1,8 +1,7 @@
 #pragma once
 
 #include "IComputationScheme.hpp"
-#include <complex>
-#define complex std::complex<double>
+#include "Constants.hpp"
 
 class Grid;
 class Potential;
