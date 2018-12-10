@@ -19,6 +19,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
   for (int is = 0; is < ns; is ++)
     psi[is] = new complex [g->nx];
 
+  pot->dump_to_file (files->pot, 0.);
   // start propagation
   for (int is = 0; is < ns; is ++) {
     for (int ix = 0; ix < g->nx; ix ++)
@@ -30,8 +31,10 @@ int CNTDSE1D::TISEComputationScheme::Run () {
         if (it % print_steps == 0) {
           fprintf (files->time, "%lf\n", abs (t));
           wf->dump_to_file (files->norm);
+          double energy = wf->energy ();
+          fprintf (files->energy, "%le\n", energy);
           printf ("step:%ld time:(%f %f) \tnorm:%le energy:%le\n",
-                  it, real (t), imag (t), wf->norm (), wf->energy ());
+                  it, real (t), imag (t), wf->norm (), energy);
         }
       }
 
@@ -44,13 +47,14 @@ int CNTDSE1D::TISEComputationScheme::Run () {
     for (int ix = 0; ix < g->nx; ix ++)
       psi[is][ix] = wf->psi[ix];
 
-    printf ("Energy of state %d: %le\n", is, wf->energy ());
     // output...
     if (is == ns-1) {
       fprintf (files->time, "%lf\n", abs (t));
       wf->dump_to_file (files->norm);
+      double energy = wf->energy ();
+      fprintf (files->energy, "%le\n", energy);
       printf ("step:%ld time:(%f %f) \tnorm:%le energy:%le\n",
-              nt, real (t), imag (t), wf->norm (), wf->energy ());
+              nt, real (t), imag (t), wf->norm (), energy);
     }
 
   }

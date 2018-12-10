@@ -10,6 +10,7 @@ class Files {
   FILE* time;
   FILE* norm;
   FILE* pot;
+  FILE* energy;
 
   Files () {
     char dir[] = "res";
@@ -27,11 +28,14 @@ class Files {
     norm = fopen (filename, "w");
     sprintf (filename, "%s/%s", dir, "pot.dat");
     pot  = fopen (filename, "w");
+    sprintf (filename, "%s/%s", dir, "energy.dat");
+    energy  = fopen (filename, "w");
   }
   ~Files () {
     fclose (grid);
     fclose (time);
     fclose (norm);
     fclose (pot);
+    fclose (energy);
   }
 };

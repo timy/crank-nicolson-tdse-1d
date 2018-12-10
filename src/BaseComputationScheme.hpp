@@ -14,19 +14,19 @@ namespace CNTDSE1D {
 class BaseComputationScheme : public IComputationScheme {
  public:
 
-  long      nx;
-  double    x0;
-  double    dx;
+  long      nx;          // explicit input required
+  double    x0;          // explicit input required
+  double    dx;          // explicit input required
 
-  long      nt;
-  double    dt;
+  long      nt;          // explicit input required
+  double    dt;          // explicit input required
 
-  long      print_steps;
+  long      print_steps; // explicit input required
 
   complex   time_step;
   Grid      *g;
-  Potential *pot;
-  InitWave  *initWave;
+  Potential *pot;        // explicit input required
+  InitWave  *initWave;   // explicit input required
   Wavefunc  *wf;
   Files     *files;
 

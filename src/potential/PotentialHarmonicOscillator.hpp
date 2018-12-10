@@ -1,6 +1,5 @@
 #pragma once
 #include "Potential.hpp"
-#include "Constants.hpp"
 
 class PotentialHarmonicOscillator : public Potential {
  public:
