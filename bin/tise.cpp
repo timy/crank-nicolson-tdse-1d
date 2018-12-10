@@ -1,1 +1,2 @@
-#include "tise.hpp"
+//#include "tiseHarmonicOscillator.hpp"
+#include "tiseSoftCore.hpp"

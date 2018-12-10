@@ -20,6 +20,8 @@ make
 
 - 获得结果通过执行 `python ../bin/plot.py`， 可生成动画。
 
+- 不同系统的示例位于 `../bin` 中，可修改 `../bin/tise.cpp` 与 `../bin/tdse.cpp` 中引入的头文件，更换示例。比如，可在 `../bin/tise.cpp` 中引入 `tiseSoftCore.hpp` 用于计算软核势体系下的定态薛定谔方程。
+
 ## 结构
 
     ├── bin
@@ -28,7 +30,8 @@ make
     │   ├── tdse.cpp
     │   ├── tdse.hpp
     │   ├── tise.cpp
-    │   └── tise.hpp
+    │   ├── tiseHarmonicOscillator.hpp
+    │   └── tiseSoftCore.hpp
     ├── CMakeLists.txt
     ├── README.md
     └── src
@@ -40,12 +43,14 @@ make
         ├── Grid.hpp
         ├── IComputationScheme.hpp
         ├── initWave
+        │   ├── InitWaveFromFile.hpp
         │   ├── InitWaveGaussian.hpp
         │   └── InitWaveRandom.hpp
         ├── InitWave.hpp
         ├── main.cpp
         ├── potential
-        │   └── PotentialHarmonicOscillator.hpp
+        │   ├── PotentialHarmonicOscillator.hpp
+        │   └── PotentialSoftCore.hpp
         ├── Potential.hpp
         ├── TDMA.hpp
         ├── TDSEComputationScheme.cpp
