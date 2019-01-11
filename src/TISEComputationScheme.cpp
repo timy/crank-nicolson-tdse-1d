@@ -14,6 +14,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
   Files files_time   ("time"  , "w");
   Files files_energy ("energy", "w", ns);
   Files files_norm   ("norm"  , "w", ns);
+  Files files_wf     ("wf"    , "w", ns);
 
   complex* psi_init = new complex [g->nx];
   for (int ix = 0; ix < g->nx; ix ++)
@@ -29,7 +30,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
   auto dump_info_to_file = [&] (int is, long it) {
     if (is == 0)
       fprintf (files_time[0], "%lf\n", abs (t));
-    wf->dump_to_file (files_norm[is]);
+    wf->dump_norm_to_file (files_norm[is]);
     double energy = wf->energy ();
     fprintf (files_energy[is], "%le\n", energy);
     printf ("step:%ld time:(%f %f) \tnorm:%le energy:%le\n",
@@ -57,6 +58,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
     for (int ix = 0; ix < g->nx; ix ++)
       psi[is][ix] = wf->psi[ix];
     dump_info_to_file (is, nt);
+    wf->dump_wf_to_file (files_wf[is]);
   }
   for (int is = 0; is < ns; is ++)
     delete[] psi[is];

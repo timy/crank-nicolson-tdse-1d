@@ -80,9 +80,15 @@ class Wavefunc {
       psi[i] = tdma->x[i];
   }
 
-  void dump_to_file (FILE* file) {
+  void dump_norm_to_file (FILE* file) {
     for (int ix = 0; ix < nx; ix ++)
       fprintf (file, "%le ", real (conj (psi[ix]) * psi[ix]));
+    fprintf (file, "\n");
+  }
+
+  void dump_wf_to_file (FILE* file) {
+    for (int ix = 0; ix < nx; ix ++)
+      fprintf (file, "%le %le ", real (psi[ix]), imag (psi[ix]));
     fprintf (file, "\n");
   }
 
