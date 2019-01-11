@@ -9,26 +9,27 @@ int CNTDSE1D::TDSEComputationScheme::Initialize () {
 
 int CNTDSE1D::TDSEComputationScheme::Run () {
   double t = 0.;
+  Files files_time ("time", "w");
+  Files files_energy ("energy", "w");
+  Files files_norm ("norm", "w");
+
+  auto dump_info_to_file = [&] (long it) {
+    fprintf (files_time[0], "%lf\n", t);
+    wf->dump_to_file (files_norm[0]);
+    pot->dump_to_file (t);
+    double energy = wf->energy ();
+    fprintf (files_energy[0], "%le\n", energy);
+    printf ("step:%ld\tnorm:%le energy:%le\n", it, wf->norm(), energy);
+  };
 
   for (long it = 0; it < nt; it ++) {
     if (it % print_steps == 0) {
-      fprintf (files->time, "%lf\n", t);
-      wf->dump_to_file (files->norm);
-      pot->dump_to_file (files->pot, t);
-      double energy = wf->energy ();
-      fprintf (files->energy, "%le\n", energy);
-      printf ("step:%ld\tnorm:%le energy:%le\n", it, wf->norm(), energy);
+      dump_info_to_file (it);
     }
     wf->propagate (t);
     t += dt;
   }
-  // print for the last step
-  fprintf (files->time, "%lf\n", t);
-  wf->dump_to_file (files->norm);
-  pot->dump_to_file (files->pot, t);
-  double energy = wf->energy ();
-  fprintf (files->energy, "%le\n", energy);
-  printf ("step:%ld\tnorm:%le energy:%le\n", nt, wf->norm(), energy);
+  dump_info_to_file (nt);
 
   return 0;
 }

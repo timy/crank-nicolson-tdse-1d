@@ -14,7 +14,7 @@ class MyComputationScheme : public TISEComputationScheme {
 
   int Initialize () {
 
-    ns = 1;     // number of states
+    ns = 2;     // number of states
 
     nx = 2001;  // number of spatial grid points
     x0 = -40;   // starting position

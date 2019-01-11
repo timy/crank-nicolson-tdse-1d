@@ -2,11 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-t = np.loadtxt('res/time.dat')
-x = np.loadtxt('res/grid.dat')
-wf = np.loadtxt('res/norm.dat')
-pot = np.loadtxt('res/pot.dat')
-energy = np.loadtxt('res/energy.dat')
+t = np.loadtxt('res/time_0.dat')
+x = np.loadtxt('res/grid_0.dat')
+pot = np.loadtxt('res/pot_0.dat')
+# may change the index of the followings for excited state with TISE
+wf = np.loadtxt('res/norm_0.dat')
+energy = np.loadtxt('res/energy_0.dat')
 nt = len(t)
 
 bTISE = False;

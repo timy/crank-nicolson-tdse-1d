@@ -28,6 +28,14 @@ make
 
 - 类 `TISEComputationScheme` 与 `TDSEComputationScheme` 是具体实现的第二层，针对定态解与含时解分别定义不同的操作。
 
+- 类 `Files` 用于系统性地生成一组文件名，建立并保存相应的文件指针。在 `dir` 目录下，指定文件名 `filename` 及该文件名下的文件数量 `n_files`，可生成一组全文件名 `{dir}/{filename}_{idx}.dat`，其中 `idx` 将在 `0` 到 `n_files-1` 间遍历。构造时可不指定文件名及打开方式（`"w"`或`"r"`），但需指定该组文件的数量；如不指定，默认只含一个文件。在实际产生文件前（调用 `open` 函数前），可 `set_dir (dir)` 指定目录，不指定时默认为 `res`。调用 `open` 时，传入文件名及打开方式。关闭文件可调用 `close`。文件指针可通过数组下标 `[]` 的方式引用。示例可参见 `Files.hpp` 尾部说明。
+
+- TISE 算到第 ns 个本征态，则会在 `res` 中产生 ns 组 `norm_idx.dat` 与 `energy_idx.dat`，其中 `idx` 从 0 到 ns-1，表示从基态到第 ns-1 激发态。绘制第 i 态结果时，可以改动 `../bin/plot.py` 中 `loadtxt` 读取数据的文件名 `res/norm_idx.dat` 与 `res/energy_idx.dat`，其他文件名保持原样。
+
+- TDSE 计算只会产生一组 `norm_0.dat` 与 `energy_0.dat`。绘制结果时，所有文件名下标均为 0。
+
+- 绘制程序 `../bin/plot.py` 会根据 `res/pot_0.dat` 数据，自动分辨 TISE （只有一组势能）与 TDSE （`nt` 组势能）计算
+
 ## 结构
 
     ├── bin

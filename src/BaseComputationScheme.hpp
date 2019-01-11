@@ -5,7 +5,6 @@
 
 class Grid;
 class Potential;
-class Files;
 class Wavefunc;
 class InitWave;
 
@@ -28,7 +27,6 @@ class BaseComputationScheme : public IComputationScheme {
   Potential *pot;        // explicit input required
   InitWave  *initWave;   // explicit input required
   Wavefunc  *wf;
-  Files     *files;
 
   virtual int Initialize ();
   virtual int Run ();

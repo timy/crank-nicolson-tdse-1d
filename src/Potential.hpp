@@ -6,17 +6,20 @@
 class Potential {
  public:
   Grid *g;
+  Files files;
 
-  Potential () {};
+  Potential () {
+    files.open ("pot", "w");
+  };
   virtual ~Potential () {};
 
   // Example:  return 0.01 * x * x + sin(0.2 * t) * x;
   virtual complex V (long x, complex t) = 0;
 
-  void dump_to_file (FILE* file, complex t) {
+  void dump_to_file (complex t) {
     for (int ix = 0; ix < g->nx; ix ++) {
-      fprintf(file, "%le ", real(V(ix, t)));
+      fprintf(files[0], "%le ", real(V(ix, t)));
     }
-    fprintf(file, "\n");
+    fprintf(files[0], "\n");
   }
 };
