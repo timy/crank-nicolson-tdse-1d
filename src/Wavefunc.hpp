@@ -124,6 +124,16 @@ class Wavefunc {
     return s;
   }
 
+  double expect_p () {
+    complex s = 0.;
+    s += 0.5 * conj (psi[0]) * psi[1];
+    for (int ix = 1; ix < nx-1; ix ++)
+      s += 0.5 * conj (psi[ix]) * (psi[ix+1]-psi[ix-1]);
+    s += 0.5 * conj (psi[nx-1]) * (-psi[nx-2]);
+    s *= - I;
+    return real (s);
+  }
+
   inline complex projection (complex* v) {
     complex c = 0.;
     for (int ix = 0; ix < nx; ix ++)
