@@ -2,12 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-t = np.loadtxt('res/time_0.dat')
-x = np.loadtxt('res/grid_0.dat')
-pot = np.loadtxt('res/pot_0.dat')
+base_dir = 'res_re' # 'res_im' for imaginary time propagation for TISE
+t = np.loadtxt(base_dir+'/time_0.dat')
+x = np.loadtxt(base_dir+'/grid_0.dat')
+pot = np.loadtxt(base_dir+'/pot_0.dat')
 # may change the index of the followings for excited state with TISE
-wf = np.loadtxt('res/norm_0.dat')
-energy = np.loadtxt('res/energy_0.dat')
+wf = np.loadtxt(base_dir+'/norm_0.dat')
+energy = np.loadtxt(base_dir+'/energy_0.dat')
 nt = len(t)
 
 bTISE = False;

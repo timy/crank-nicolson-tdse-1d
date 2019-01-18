@@ -17,15 +17,17 @@ class Files {
     } catch (const char* s) {
       return;
     }
+    set_dir (".");
   }
 
-  Files (const char* filename, const char* flag, int n_files=1)
+  Files (const char* filename, const char* flag, const char* dir_, int n_files)
   : n_files (n_files) {
     try {
       initialize ();
     } catch (const char* s) {
       return;
     }
+    set_dir (dir_);
     this->open (filename, flag);
   }
 
@@ -45,7 +47,6 @@ class Files {
     files = new FILE*[n_files];
     for (int i = 0; i < n_files; i ++)
       files[i] = nullptr;
-    set_dir();
   }
 
   void open (const char* filename, const char* flag) {
@@ -74,7 +75,7 @@ class Files {
         fclose (files[i]);
   }
 
-  void set_dir (const char* dirname = "res") {
+  void set_dir (const char* dirname) {
     strcpy (dir, dirname);
   }
 
@@ -95,13 +96,13 @@ class Files {
 // // used for ----- Demo 3 -----
 // class Grid {
 //  public:
-//   Files files{"test", "w", 3};
+//   Files files{"test", "w", "res", 3};
 // };
 
 
 // int main (int argc, char* argv[]) {
 //   // // ----- Demo 1 -----
-//   // Files files("test", "w", 3);
+//   // Files files("test", "w", "res", 3);
 
 //   // // ----- Demo 2 -----
 //   // Files files(3);

@@ -15,10 +15,10 @@ int CNTDSE1D::TISEComputationScheme::Run () {
   // Calculate ground state by imaginary time propagation
   // Excited states are obtained by Gram-Schmidt orthogonalization
 
-  Files files_time   ("time"  , "w");
-  Files files_energy ("energy", "w", ns);
-  Files files_norm   ("norm"  , "w", ns);
-  Files files_wf     ("wf"    , "w", ns);
+  Files files_time   (  "time", "w", base_dir,  1);
+  Files files_energy ("energy", "w", base_dir, ns);
+  Files files_norm   (  "norm", "w", base_dir, ns);
+  Files files_wf     (    "wf", "w", base_dir, ns);
 
   complex* psi_init = new complex [g->nx];
   for (int ix = 0; ix < g->nx; ix ++)

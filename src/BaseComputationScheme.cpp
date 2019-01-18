@@ -10,7 +10,10 @@ int CNTDSE1D::BaseComputationScheme::Initialize () {
 
   // setup grid
   g = new Grid (nx, dx, x0);
+  g->setup_file (base_dir);
+  g->dump_to_file ();
   pot->g = g;
+  pot->setup_file (base_dir);
   return 0;
 }
 

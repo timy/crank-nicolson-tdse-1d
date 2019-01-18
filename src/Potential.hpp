@@ -8,13 +8,16 @@ class Potential {
   Grid *g;
   Files files;
 
-  Potential () {
-    files.open ("pot", "w");
-  };
+  Potential () {};
   virtual ~Potential () {};
 
   // Example:  return 0.01 * x * x + sin(0.2 * t) * x;
   virtual complex V (long x, complex t) = 0;
+
+  void setup_file (const char* dir) {
+    files.set_dir (dir);
+    files.open ("pot", "w");
+  }
 
   void dump_to_file (complex t) {
     for (int ix = 0; ix < g->nx; ix ++) {

@@ -25,6 +25,8 @@ class MyComputationScheme : public TDSEComputationScheme {
 
     pot = &pot_harmonic_oscillator;
 
+    strcpy (base_dir, "res_re"); // directory to store results
+
     return TDSEComputationScheme::Initialize ();
   }
 
@@ -37,7 +39,7 @@ class MyComputationScheme : public TDSEComputationScheme {
     // return TDSEComputationScheme::InitWaveFunc (&gaussian);
 
     // read from file
-    InitWaveFromFile wfFromFile ("res/wf_init_1.dat", g);
+    InitWaveFromFile wfFromFile ("res_im/wf_1.dat", g);
     return TDSEComputationScheme::InitWaveFunc (&wfFromFile);
   }
 };

@@ -13,10 +13,10 @@ int CNTDSE1D::TDSEComputationScheme::InitWaveFunc (InitWave* initWave) {
 
 int CNTDSE1D::TDSEComputationScheme::Run () {
   double t = 0.;
-  Files files_time ("time", "w");
-  Files files_energy ("energy", "w");
-  Files files_norm ("norm", "w");
-  Files files_wf ("wf", "w");
+  Files files_time   (  "time", "w", base_dir, 1);
+  Files files_energy ("energy", "w", base_dir, 1);
+  Files files_norm   (  "norm", "w", base_dir, 1);
+  Files files_wf     (    "wf", "w", base_dir, 1);
 
   auto dump_info_to_file = [&] (long it) {
     fprintf (files_time[0], "%lf\n", t);

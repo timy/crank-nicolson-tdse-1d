@@ -26,6 +26,8 @@ class MyComputationScheme : public TISEComputationScheme {
 
     pot = &pot_harmonic_oscillator; // potential
 
+    strcpy (base_dir, "res_im"); // directory to store results
+
     return TISEComputationScheme::Initialize ();
   }
 
