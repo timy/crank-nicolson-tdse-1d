@@ -115,6 +115,15 @@ class Wavefunc {
     return real (e);
   }
 
+  double expect_x () {
+    double s = 0.;
+    s += 0.5 * dx * g.x[0] * real (conj (psi[0]) * psi[0]);
+    for (int ix = 1; ix < nx-1; ix ++)
+      s += dx * g.x[ix] * real (conj (psi[ix]) * psi[ix]);
+    s += 0.5 * dx * g.x[nx-1] * real (conj (psi[nx-1]) * psi[nx-1]);
+    return s;
+  }
+
   inline complex projection (complex* v) {
     complex c = 0.;
     for (int ix = 0; ix < nx; ix ++)

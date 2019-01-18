@@ -22,6 +22,7 @@ wf_min, wf_max = np.amin(wf), np.amax(wf)
 pot = (pot - pot_min) / (pot_max - pot_min)
 if bTISE == False:
     wf = (wf - wf_min) / (wf_max - wf_min)
+    expect_x = np.loadtxt(base_dir+'/x_0.dat')
 
 # move the wave packet to the position corresponding to
 # the actual energy of the system
@@ -42,13 +43,15 @@ ax_pot = ax.twinx()
 ax_pot.set_ylim([pot_min, pot_max])
 
 # time indicator
-text = ax.text(0.5*x[-1], 0.9, '')
+text_time = ax.text(0.5*x[-1], 0.9, '')
+text_x = ax.text(0.5*x[-1], 0.8, '')
 
 def init_ani():
     line_wf.set_data(x, wf[0])
     line_pot.set_data(x, pot[0])
-    text.set_text('')
-    return line_wf, line_pot, text
+    text_time.set_text('')
+    text_x.set_text('')
+    return line_wf, line_pot, text_time, text_x
 
 def run (i):
     line_wf.set_data (x, wf[i])
@@ -56,8 +59,9 @@ def run (i):
         line_pot.set_data (x, pot)
     else:
         line_pot.set_data (x, pot[i])
-    text.set_text (r'$t=%5.1f$ a.u.' % t[i])
-    return line_wf, line_pot, text,
+    text_time.set_text (r'$t=%5.1f$ a.u.' % t[i])
+    text_x.set_text (r'$x=%5.2f$ a.u.' % expect_x[i])
+    return line_wf, line_pot, text_time, text_x,
 
 ani = animation.FuncAnimation (fig, run, frames=nt, init_func=init_ani,
                                interval=200, blit=True)

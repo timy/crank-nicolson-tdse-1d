@@ -17,6 +17,7 @@ int CNTDSE1D::TDSEComputationScheme::Run () {
   Files files_energy ("energy", "w", base_dir, 1);
   Files files_norm   (  "norm", "w", base_dir, 1);
   Files files_wf     (    "wf", "w", base_dir, 1);
+  Files files_x      (     "x", "w", base_dir, 1);
 
   auto dump_info_to_file = [&] (long it) {
     fprintf (files_time[0], "%lf\n", t);
@@ -25,6 +26,8 @@ int CNTDSE1D::TDSEComputationScheme::Run () {
     pot->dump_to_file (t);
     double energy = wf->energy ();
     fprintf (files_energy[0], "%le\n", energy);
+    double x = wf->expect_x ();
+    fprintf (files_x[0], "%le\n", x);
     printf ("step:%ld\tnorm:%le energy:%le\n", it, wf->norm(), energy);
   };
 

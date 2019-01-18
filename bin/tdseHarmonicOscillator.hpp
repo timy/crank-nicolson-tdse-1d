@@ -2,7 +2,7 @@
 
 #include "TDSEComputationScheme.hpp"
 #include "potential/PotentialHarmonicOscillator.hpp"
-// #include "initWave/InitWaveGaussian.hpp"
+#include "initWave/InitWaveGaussian.hpp"
 #include "initWave/InitWaveFromFile.hpp"
 
 namespace CNTDSE1D {
@@ -31,16 +31,16 @@ class MyComputationScheme : public TDSEComputationScheme {
   }
 
   int InitWaveFunc () {
-    // // Gaussian
-    // InitWaveGaussian gaussian;
-    // gaussian.x0 = -20.;
-    // gaussian.sigma = 1.;
-    // gaussian.k = 4.;
-    // return TDSEComputationScheme::InitWaveFunc (&gaussian);
+    // Gaussian
+    InitWaveGaussian gaussian;
+    gaussian.x0 = -20.;
+    gaussian.sigma = 1.;
+    gaussian.k = 4.;
+    return TDSEComputationScheme::InitWaveFunc (&gaussian);
 
-    // read from file
-    InitWaveFromFile wfFromFile ("res_im/wf_1.dat", g);
-    return TDSEComputationScheme::InitWaveFunc (&wfFromFile);
+    // // read from file
+    // InitWaveFromFile wfFromFile ("res_im/wf_1.dat", g);
+    // return TDSEComputationScheme::InitWaveFunc (&wfFromFile);
   }
 };
 
