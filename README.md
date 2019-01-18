@@ -32,7 +32,9 @@ make
 
 - TISE 算到第 ns 个本征态，则会在 `res` 中产生 ns 组 `norm_idx.dat` 与 `energy_idx.dat`，其中 `idx` 从 0 到 ns-1，表示从基态到第 ns-1 激发态。绘制第 i 态结果时，可以改动 `../bin/plot.py` 中 `loadtxt` 读取数据的文件名 `res/norm_idx.dat` 与 `res/energy_idx.dat`，其他文件名保持原样。
 
-- TDSE 计算只会产生一组 `norm_0.dat` 与 `energy_0.dat`。绘制结果时，所有文件名下标均为 0。
+- 类 `InitWave` 提供了波函数的初始化方法，包括模型如 `InitWaveGaussian` 与 `InitWaveRandom`，也可以直接从文件中读取波函数：`InitWaveFromFile`。一般可以用 TISE 方法产生本征态波函数，再通过 `InitWaveFromFile` 读取该波函数用于 TDSE 计算。为了能够使用坐标网格， `InitWaveFunc` 已从 `Initialize` 函数中分离，可以传入已创建好的网格。
+
+- 不同于 TISE 计算会产生 `wf_i.dat`，`norm_i.dat` 与 `energy_i.dat`，其中 `i` 为 0 到 ns-1，TDSE 计算只会产生一组相关数据，其中 `i` 为 0。绘制结果时，所有文件名下标均为 0。
 
 - 绘制程序 `../bin/plot.py` 会根据 `res/pot_0.dat` 数据，自动分辨 TISE （只有一组势能）与 TDSE （`nt` 组势能）计算
 

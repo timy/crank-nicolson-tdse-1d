@@ -6,6 +6,7 @@ class TDSEComputationScheme : public BaseComputationScheme {
  public:
 
   int Initialize ();
+  int InitWaveFunc (InitWave* initWave);
   int Run ();
 
 };

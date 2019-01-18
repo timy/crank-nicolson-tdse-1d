@@ -7,6 +7,10 @@ int CNTDSE1D::TDSEComputationScheme::Initialize () {
   return BaseComputationScheme::Initialize ();
 }
 
+int CNTDSE1D::TDSEComputationScheme::InitWaveFunc (InitWave* initWave) {
+  return BaseComputationScheme::InitWaveFunc (initWave);
+}
+
 int CNTDSE1D::TDSEComputationScheme::Run () {
   double t = 0.;
   Files files_time ("time", "w");

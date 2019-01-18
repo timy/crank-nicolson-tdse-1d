@@ -8,6 +8,7 @@ class TISEComputationScheme : public BaseComputationScheme {
   int ns = 1;
 
   int Initialize ();
+  int InitWaveFunc (InitWave* initWave);
   int Run ();
 };
 

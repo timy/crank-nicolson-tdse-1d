@@ -1,1 +1,1 @@
-#include "tdse.hpp"
+#include "tdseHarmonicOscillator.hpp"

@@ -8,7 +8,6 @@ namespace CNTDSE1D {
 class MyComputationScheme : public TISEComputationScheme {
 
   PotentialSoftCore pot_soft_core;
-  InitWaveRandom random_wf;
 
  public:
 
@@ -32,9 +31,13 @@ class MyComputationScheme : public TISEComputationScheme {
     // when a = 0.4, E_0 = 26.5 eV
 
     pot = &pot_soft_core;  // potential
-    initWave = &random_wf; // initial wave function
 
     return TISEComputationScheme::Initialize ();
+  }
+
+  int InitWaveFunc () {
+    InitWaveRandom random_wf;
+    return TISEComputationScheme::InitWaveFunc (&random_wf);
   }
 
 };

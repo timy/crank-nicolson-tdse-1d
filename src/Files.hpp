@@ -17,8 +17,6 @@ class Files {
     } catch (const char* s) {
       return;
     }
-    for (int i = 0; i < n_files; i ++)
-      files[i] = nullptr;
   }
 
   Files (const char* filename, const char* flag, int n_files=1)
@@ -45,6 +43,8 @@ class Files {
       throw "invalid n_files";
     }
     files = new FILE*[n_files];
+    for (int i = 0; i < n_files; i ++)
+      files[i] = nullptr;
     set_dir();
   }
 

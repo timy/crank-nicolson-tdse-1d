@@ -25,10 +25,10 @@ class BaseComputationScheme : public IComputationScheme {
   complex   time_step;
   Grid      *g;
   Potential *pot;        // explicit input required
-  InitWave  *initWave;   // explicit input required
   Wavefunc  *wf;
 
   virtual int Initialize ();
+  virtual int InitWaveFunc (InitWave* initWave);
   virtual int Run ();
   virtual void Finalize ();
 };

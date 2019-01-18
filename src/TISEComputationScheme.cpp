@@ -7,6 +7,10 @@ int CNTDSE1D::TISEComputationScheme::Initialize () {
   return BaseComputationScheme::Initialize ();
 }
 
+int CNTDSE1D::TISEComputationScheme::InitWaveFunc (InitWave* initWave) {
+  return BaseComputationScheme::InitWaveFunc (initWave);
+}
+
 int CNTDSE1D::TISEComputationScheme::Run () {
   // Calculate ground state by imaginary time propagation
   // Excited states are obtained by Gram-Schmidt orthogonalization

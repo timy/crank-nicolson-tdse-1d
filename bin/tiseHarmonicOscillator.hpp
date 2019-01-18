@@ -8,7 +8,6 @@ namespace CNTDSE1D {
 class MyComputationScheme : public TISEComputationScheme {
 
   PotentialHarmonicOscillator pot_harmonic_oscillator;
-  InitWaveRandom random_wf;
 
  public:
 
@@ -26,9 +25,13 @@ class MyComputationScheme : public TISEComputationScheme {
     print_steps = 20; // output results every print_steps
 
     pot = &pot_harmonic_oscillator; // potential
-    initWave = &random_wf;          // initial wave function
 
     return TISEComputationScheme::Initialize ();
+  }
+
+  int InitWaveFunc () {
+    InitWaveRandom random_wf;
+    return TISEComputationScheme::InitWaveFunc (&random_wf);
   }
 
 };
