@@ -44,7 +44,7 @@ make
     │   ├── CMakeLists.txt
     │   ├── plot.py
     │   ├── tdse.cpp
-    │   ├── tdse.hpp
+    │   ├── tdseHarmonicOscillator.hpp
     │   ├── tise.cpp
     │   ├── tiseHarmonicOscillator.hpp
     │   └── tiseSoftCore.hpp
