@@ -57,9 +57,9 @@ class Wavefunc {
       psi[ix] = (*initWave) (ix);
   }
 
-  void propagate (complex t) {
+  void propagate (long it) {
     for (int ix = 0; ix < nx; ix ++) {
-      V[ix] = pot.V (ix, t);
+      V[ix] = pot.V (ix, it);
       r0[ix] = 0.5 * dt * (1./(dx*dx) + V[ix]);
       r1[ix] = 0.5 * dt * (1./(dx*dx) + V[ix]);
     }

@@ -1,1 +1,2 @@
-#include "tdseHarmonicOscillator.hpp"
+//#include "tdseHarmonicOscillator.hpp"
+#include "tdseSoftCore.hpp"

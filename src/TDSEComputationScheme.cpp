@@ -24,7 +24,7 @@ int CNTDSE1D::TDSEComputationScheme::Run () {
     fprintf (files_time[0], "%lf\n", t);
     wf->dump_norm_to_file (files_norm[0]);
     wf->dump_wf_to_file (files_wf[0]);
-    pot->dump_to_file (t);
+    pot->dump_to_file (it);
     double energy = wf->energy ();
     fprintf (files_energy[0], "%le\n", energy);
     double x = wf->expect_x ();
@@ -38,7 +38,7 @@ int CNTDSE1D::TDSEComputationScheme::Run () {
     if (it % print_steps == 0) {
       dump_info_to_file (it);
     }
-    wf->propagate (t);
+    wf->propagate (it);
     t += dt;
   }
   dump_info_to_file (nt);

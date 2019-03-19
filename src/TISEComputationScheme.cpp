@@ -28,7 +28,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
   for (int is = 0; is < ns; is ++)
     psi[is] = new complex [g->nx];
 
-  pot->dump_to_file (0.);
+  pot->dump_to_file (0);
 
   complex t;
   auto dump_info_to_file = [&] (int is, long it) {
@@ -55,7 +55,7 @@ int CNTDSE1D::TISEComputationScheme::Run () {
 
       for (int is1 = 0; is1 < is; is1 ++)
         wf->orthogonalize (psi[is1]);
-      wf->propagate (t);
+      wf->propagate (it);
       wf->normalize (); // used for imaginary time propagation
       t += wf->dt;
     }

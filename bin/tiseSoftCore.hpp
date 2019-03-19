@@ -15,8 +15,8 @@ class MyComputationScheme : public TISEComputationScheme {
 
     ns = 2;     // number of states
 
-    nx = 2001;  // number of spatial grid points
-    x0 = -40;   // starting position
+    nx = 8001;  // number of spatial grid points
+    x0 = -160;   // starting position
     dx = 0.04;  // spatial step size
 
     nt = 4000;  // number of time steps

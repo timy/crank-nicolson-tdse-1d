@@ -71,8 +71,7 @@ class Files {
       return;
     }
     for (int i = 0; i < n_files; i ++)
-      if (!files[i])
-        fclose (files[i]);
+      fclose (files[i]);
   }
 
   void set_dir (const char* dirname) {

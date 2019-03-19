@@ -12,8 +12,9 @@ int CNTDSE1D::BaseComputationScheme::Initialize () {
   g = new Grid (nx, dx, x0);
   g->setup_file (base_dir);
   g->dump_to_file ();
-  pot->g = g;
+  pot->setup_grid (g);
   pot->setup_file (base_dir);
+  pot->Initialize ();
   return 0;
 }
 
@@ -29,6 +30,7 @@ int CNTDSE1D::BaseComputationScheme::Run () {
 }
 
 void CNTDSE1D::BaseComputationScheme::Finalize () {
+  pot->Finalize ();
   delete wf;
   delete g;
 }
