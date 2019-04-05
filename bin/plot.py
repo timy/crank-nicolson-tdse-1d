@@ -19,7 +19,11 @@ if len(np.shape(pot)) == 1:
 pot_min, pot_max = np.amin(pot), np.amax(pot)
 wf_min, wf_max = np.amin(wf), np.amax(wf)
 
-pot = (pot - pot_min) / (pot_max - pot_min)
+if pot_max - pot_min != 0:
+    pot = (pot - pot_min) / (pot_max - pot_min)
+else:
+    pot = pot - pot_min
+
 if bTISE == False:
     wf = (wf - wf_min) / (wf_max - wf_min)
     expect_x = np.loadtxt(base_dir+'/x_0.dat')
@@ -27,8 +31,9 @@ if bTISE == False:
 
 # move the wave packet to the position corresponding to
 # the actual energy of the system
-for i in xrange(nt):
-    wf[i] += (energy[i] - pot_min) / (pot_max - pot_min)
+if pot_max - pot_min != 0:
+    for i in xrange(nt):
+        wf[i] += (energy[i] - pot_min) / (pot_max - pot_min)
 
 # start the animation, prepare the axes and lines
 fig = plt.figure ()
@@ -52,9 +57,12 @@ def init_ani():
     line_wf.set_data(x, wf[0])
     line_pot.set_data(x, pot[0])
     text_time.set_text('')
-    text_x.set_text('')
-    text_p.set_text('')
-    return line_wf, line_pot, text_time, text_x, text_p
+    if bTISE == False:
+        text_x.set_text('')
+        text_p.set_text('')
+        return line_wf, line_pot, text_time, text_x, text_p
+    else:
+        return line_wf, line_pot, text_time
 
 def run (i):
     line_wf.set_data (x, wf[i])
@@ -63,10 +71,24 @@ def run (i):
     else:
         line_pot.set_data (x, pot[i])
     text_time.set_text (r'$t=%5.1f$ a.u.' % t[i])
-    text_x.set_text (r'$x=%5.2f$ a.u.' % expect_x[i])
-    text_p.set_text (r'$p=%5.2f$ a.u.' % expect_p[i])
-    return line_wf, line_pot, text_time, text_x, text_p,
+    if bTISE == False:
+        text_x.set_text (r'$x=%5.2f$ a.u.' % expect_x[i])
+        text_p.set_text (r'$p=%5.2f$ a.u.' % expect_p[i])
+        return line_wf, line_pot, text_time, text_x, text_p,
+    else:
+        return line_wf, line_pot, text_time
 
+def on_key(event):
+    if event.key == ',':
+        global ani, flag_pause
+        flag_pause ^= True
+        if flag_pause:
+            ani.event_source.stop ()
+        else:
+            ani.event_source.start ()
+
+fig.canvas.mpl_connect ('key_press_event', on_key)
+flag_pause = False
 ani = animation.FuncAnimation (fig, run, frames=nt, init_func=init_ani,
                                interval=200, blit=True)
 

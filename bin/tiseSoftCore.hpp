@@ -15,14 +15,14 @@ class MyComputationScheme : public TISEComputationScheme {
 
     ns = 2;     // number of states
 
-    nx = 8001;  // number of spatial grid points
-    x0 = -160;   // starting position
-    dx = 0.04;  // spatial step size
+    nx = 4001; //8001 // number of spatial grid points
+    x0 = -200; //-160;   // starting position
+    dx = 0.1; //0.04;  // spatial step size
 
-    nt = 4000;  // number of time steps
-    dt = 0.02;  // time interval
+    nt = 1000;  // number of time steps
+    dt = 0.2; //0.02;  // time interval
 
-    print_steps = 20; // output results every print_steps
+    print_steps = 10; // output results every print_steps
 
     pot_soft_core.a = 2.; // parameter of soft core potential
     // Examples:
