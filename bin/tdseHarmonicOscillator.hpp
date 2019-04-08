@@ -9,6 +9,8 @@ namespace CNTDSE1D {
 class MyComputationScheme : public TDSEComputationScheme {
 
   PotentialHarmonicOscillator pot_harmonic_oscillator;
+  InitWaveGaussian gaussian;
+  // InitWaveFromFile wfFromFile;
 
  public:
 
@@ -25,22 +27,19 @@ class MyComputationScheme : public TDSEComputationScheme {
 
     pot = &pot_harmonic_oscillator;
 
-    strcpy (base_dir, "res_re"); // directory to store results
-
-    return TDSEComputationScheme::Initialize ();
-  }
-
-  int InitWaveFunc () {
-    // Gaussian
-    InitWaveGaussian gaussian;
+    // initial wavefunction: gaussian
     gaussian.x0 = -20.;
     gaussian.sigma = 1.;
     gaussian.k = 4.;
-    return TDSEComputationScheme::InitWaveFunc (&gaussian);
+    initWave = &gaussian;
 
-    // // read from file
-    // InitWaveFromFile wfFromFile ("res_im/wf_1.dat", g);
-    // return TDSEComputationScheme::InitWaveFunc (&wfFromFile);
+    // // initial wavefunction: read from file
+    // strcpy (wfFromFile.filename, "res_im/wf_1.dat");
+    // initWave = &wfFromFile;
+
+    strcpy (base_dir, "res_re"); // directory to store results
+
+    return TDSEComputationScheme::Initialize ();
   }
 };
 

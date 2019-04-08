@@ -3,11 +3,10 @@
 #include "Wavefunc.hpp"
 
 #include "BaseComputationScheme.hpp"
-#include <cstdio>
+#include <iostream>
 
 int CNTDSE1D::BaseComputationScheme::Initialize () {
-  printf ("start initialization!\n");
-
+  std::cout << "START: BaseComputationScheme::Initialize" << std::endl;
   // setup grid
   g = new Grid (nx, dx, x0);
   g->setup_file (base_dir);
@@ -15,22 +14,21 @@ int CNTDSE1D::BaseComputationScheme::Initialize () {
   pot->setup_grid (g);
   pot->setup_file (base_dir);
   pot->Initialize ();
-  return 0;
-}
-
-int CNTDSE1D::BaseComputationScheme::InitWaveFunc (InitWave* initWave) {
-  // initialize wave function
-  initWave->g = g;
   wf = new Wavefunc (*g, *pot, time_step);
-  wf->init (initWave);
+  std::cout << "  END: BaseComputationScheme::Initialize" << std::endl;
   return 0;
-}
-
-int CNTDSE1D::BaseComputationScheme::Run () {
 }
 
 void CNTDSE1D::BaseComputationScheme::Finalize () {
+  std::cout << "START: BaseComputationScheme::Finalize" << std::endl;
   pot->Finalize ();
   delete wf;
   delete g;
+  std::cout << "  END: BaseComputationScheme::Finalize" << std::endl;
+}
+
+int CNTDSE1D::BaseComputationScheme::Run () {
+  std::cout << "START: BaseComputationScheme::Run" << std::endl;
+  std::cout << "  END: BaseComputationScheme::Run" << std::endl;
+  return 0;
 }

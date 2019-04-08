@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Constants.hpp"
+
 class Grid;
 class InitWave {
  public:
@@ -8,5 +10,7 @@ class InitWave {
   InitWave () {};
   virtual ~InitWave () {};
 
+  virtual int Initialize (Grid *grid);
+  virtual void Finalize ();
   virtual complex operator () (long i) = 0;
 };

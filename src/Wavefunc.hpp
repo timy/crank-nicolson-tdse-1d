@@ -21,7 +21,10 @@ class Wavefunc {
   Potential& pot;
 
   Wavefunc (Grid& g_, Potential& pot_, complex dt_) :
-    pot (pot_), g (g_), nx (g_.nx), dx (g_.dx), dt (dt_) {
+  g (g_), pot (pot_) {
+    dt = dt_;
+    nx = g.nx;
+    dx = g.dx;
     x = new double [nx];
     r0 = new complex [nx]; // r_{j}
     r1 = new complex [nx]; // r_{j+1}

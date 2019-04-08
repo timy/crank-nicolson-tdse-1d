@@ -15,6 +15,8 @@ class MyComputationScheme : public TDSEComputationScheme {
   PotentialSoftCore pot_soft_core;
   FieldSin2 field_sin2;
   PotentialComplexAbsorption pot_imag_absorb;
+  // InitWaveGaussian gaussian;
+  InitWaveFromFile wfFromFile;
 
  public:
 
@@ -44,22 +46,20 @@ class MyComputationScheme : public TDSEComputationScheme {
     pot_composition.pot[2] = &pot_imag_absorb;
     pot = &pot_composition;
 
-    strcpy (base_dir, "res_re"); // directory to store results
-
-    return TDSEComputationScheme::Initialize ();
-  }
-
-  int InitWaveFunc () {
     // // Gaussian
     // InitWaveGaussian gaussian;
     // gaussian.x0 = 0.; //-20.;
     // gaussian.sigma = 0.1;// 1.;
     // gaussian.k = 4.;
-    // return TDSEComputationScheme::InitWaveFunc (&gaussian);
+    // initWave = &gaussian;
 
-    // read from file
-    InitWaveFromFile wfFromFile ("res_im/wf_0.dat", g);
-    return TDSEComputationScheme::InitWaveFunc (&wfFromFile);
+    // initial wavefunction: read from file
+    strcpy (wfFromFile.filename, "res_im/wf_0.dat");
+    initWave = &wfFromFile;
+
+    strcpy (base_dir, "res_re"); // directory to store results
+
+    return TDSEComputationScheme::Initialize ();
   }
 };
 

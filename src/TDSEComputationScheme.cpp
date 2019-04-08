@@ -1,17 +1,27 @@
 #include "TDSEComputationScheme.hpp"
 #include "Wavefunc.hpp"
 #include "Files.hpp"
+#include <iostream>
 
 int CNTDSE1D::TDSEComputationScheme::Initialize () {
+  std::cout << "START: TDSEComputationScheme::Initialize" << std::endl;
   time_step = dt;
-  return BaseComputationScheme::Initialize ();
+  BaseComputationScheme::Initialize (); // setup grid, pot and prepare wf
+  initWave->Initialize (g);
+  wf->init (initWave);
+  std::cout << "  END: TDSEComputationScheme::Initialize" << std::endl;
+  return 0;
 }
 
-int CNTDSE1D::TDSEComputationScheme::InitWaveFunc (InitWave* initWave) {
-  return BaseComputationScheme::InitWaveFunc (initWave);
+void CNTDSE1D::TDSEComputationScheme::Finalize () {
+  std::cout << "START: TDSEComputationScheme::Finalize" << std::endl;
+  initWave->Finalize ();
+  std::cout << "  END: TDSEComputationScheme::Finalize" << std::endl;
+  BaseComputationScheme::Finalize ();
 }
 
 int CNTDSE1D::TDSEComputationScheme::Run () {
+  std::cout << "START: TDSEComputationScheme::Run" << std::endl;
   double t = 0.;
   Files files_time   (  "time", "w", base_dir, 1);
   Files files_energy ("energy", "w", base_dir, 1);
@@ -42,6 +52,6 @@ int CNTDSE1D::TDSEComputationScheme::Run () {
     t += dt;
   }
   dump_info_to_file (nt);
-
+  std::cout << "  END: TDSEComputationScheme::Run" << std::endl;
   return 0;
 }

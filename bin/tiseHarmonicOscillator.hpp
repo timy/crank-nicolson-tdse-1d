@@ -1,13 +1,14 @@
 #pragma once
 
-#include "TISEComputationScheme.hpp"
+#include "TISEImaginaryTimeProp.hpp"
 #include "potential/PotentialHarmonicOscillator.hpp"
 #include "initWave/InitWaveRandom.hpp"
 
 namespace CNTDSE1D {
-class MyComputationScheme : public TISEComputationScheme {
+class MyComputationScheme : public TISEImaginaryTimeProp {
 
   PotentialHarmonicOscillator pot_harmonic_oscillator;
+  InitWaveRandom random_wf;
 
  public:
 
@@ -25,17 +26,12 @@ class MyComputationScheme : public TISEComputationScheme {
     print_steps = 20; // output results every print_steps
 
     pot = &pot_harmonic_oscillator; // potential
+    initWave = &random_wf; // initial wavefunction
 
     strcpy (base_dir, "res_im"); // directory to store results
 
-    return TISEComputationScheme::Initialize ();
+    return TISEImaginaryTimeProp::Initialize ();
   }
-
-  int InitWaveFunc () {
-    InitWaveRandom random_wf;
-    return TISEComputationScheme::InitWaveFunc (&random_wf);
-  }
-
 };
 
 MyComputationScheme scheme;

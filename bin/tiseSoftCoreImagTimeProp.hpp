@@ -1,13 +1,14 @@
 #pragma once
 
-#include "TISEComputationScheme.hpp"
+#include "TISEImaginaryTimeProp.hpp"
 #include "potential/PotentialSoftCore.hpp"
 #include "initWave/InitWaveRandom.hpp"
 
 namespace CNTDSE1D {
-class MyComputationScheme : public TISEComputationScheme {
+class MyComputationScheme : public TISEImaginaryTimeProp {
 
   PotentialSoftCore pot_soft_core;
+  InitWaveRandom random_wf;
 
  public:
 
@@ -19,10 +20,10 @@ class MyComputationScheme : public TISEComputationScheme {
     x0 = -200; //-160;   // starting position
     dx = 0.1; //0.04;  // spatial step size
 
-    nt = 1000;  // number of time steps
+    nt = 600;  // number of time steps
     dt = 0.2; //0.02;  // time interval
 
-    print_steps = 10; // output results every print_steps
+    print_steps = 50; // output results every print_steps
 
     pot_soft_core.a = 2.; // parameter of soft core potential
     // Examples:
@@ -31,17 +32,12 @@ class MyComputationScheme : public TISEComputationScheme {
     // when a = 0.4, E_0 = 26.5 eV
 
     pot = &pot_soft_core;  // potential
+    initWave = &random_wf; // initial wavefunction
 
     strcpy (base_dir, "res_im"); // directory to store results
 
-    return TISEComputationScheme::Initialize ();
+    return TISEImaginaryTimeProp::Initialize ();
   }
-
-  int InitWaveFunc () {
-    InitWaveRandom random_wf;
-    return TISEComputationScheme::InitWaveFunc (&random_wf);
-  }
-
 };
 
 MyComputationScheme scheme;

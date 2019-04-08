@@ -1,15 +1,14 @@
-#include "BaseComputationScheme.hpp"
+#include "TISEComputationScheme.hpp"
 
 namespace CNTDSE1D {
 
-class TDSEComputationScheme : public BaseComputationScheme {
+class TISEImaginaryTimeProp : public TISEComputationScheme {
  public:
   InitWave* initWave;
 
   int Initialize ();
   void Finalize ();
   int Run ();
-
 };
 
 }

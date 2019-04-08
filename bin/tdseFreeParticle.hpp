@@ -12,6 +12,7 @@ class MyComputationScheme : public TDSEComputationScheme {
   PotentialComposition pot_composition;
   PotentialFreeParticle pot_free_particle;
   PotentialComplexAbsorption pot_imag_absorb;
+  InitWaveGaussian gaussian;
 
  public:
 
@@ -31,18 +32,14 @@ class MyComputationScheme : public TDSEComputationScheme {
     pot_composition.pot[1] = &pot_imag_absorb;
     pot = &pot_composition;
 
-    strcpy (base_dir, "res_re"); // directory to store results
-
-    return TDSEComputationScheme::Initialize ();
-  }
-
-  int InitWaveFunc () {
-    // Gaussian
-    InitWaveGaussian gaussian;
     gaussian.x0 = 50.;
     gaussian.sigma = 1.;// 1.;
     gaussian.k = 4.;
-    return TDSEComputationScheme::InitWaveFunc (&gaussian);
+    initWave = &gaussian;
+
+    strcpy (base_dir, "res_re"); // directory to store results
+
+    return TDSEComputationScheme::Initialize ();
   }
 };
 

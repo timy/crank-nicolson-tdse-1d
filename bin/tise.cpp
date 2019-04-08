@@ -1,2 +1,3 @@
 //#include "tiseHarmonicOscillator.hpp"
-#include "tiseSoftCore.hpp"
+#include "tiseSoftCoreImagTimeProp.hpp"
+//#include "tiseSoftCoreDiagonalization.hpp"

@@ -4,7 +4,9 @@
 class InitWaveFromFile : public InitWave {
  public:
   complex* wf;
-  InitWaveFromFile (const char* filename, Grid* grid) {
+  char filename[512];
+
+  int Initialize (Grid *grid) {
     g = grid;
     FILE* file = fopen (filename, "r");
     wf = new complex [g->nx];
@@ -15,9 +17,9 @@ class InitWaveFromFile : public InitWave {
     }
     fclose (file);
   }
-  ~InitWaveFromFile () {
-    if (wf != nullptr)
-      delete[] wf;
+
+  void Finalize () {
+    delete[] wf;
   }
 
   inline complex operator () (long ix) {

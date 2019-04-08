@@ -30,9 +30,8 @@ class BaseComputationScheme : public IComputationScheme {
   char base_dir[128];
 
   virtual int Initialize ();
-  virtual int InitWaveFunc (InitWave* initWave);
-  virtual int Run ();
   virtual void Finalize ();
+  virtual int Run ();
 };
 
 }

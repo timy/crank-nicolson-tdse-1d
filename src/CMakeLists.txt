@@ -2,5 +2,8 @@ add_library(cntdse1d
   BaseComputationScheme.cpp
   TDSEComputationScheme.cpp
   TISEComputationScheme.cpp
+  TISEImaginaryTimeProp.cpp
+  TISEExactDiagonalization.cpp
+  InitWave.cpp
   main.cpp
 )

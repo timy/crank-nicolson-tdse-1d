@@ -9,7 +9,7 @@ pot = np.loadtxt(base_dir+'/pot_0.dat')
 # may change the index of the followings for excited state with TISE
 wf = np.loadtxt(base_dir+'/norm_0.dat')
 energy = np.loadtxt(base_dir+'/energy_0.dat')
-nt = len(t)
+nt = t.size
 
 bTISE = False;
 if len(np.shape(pot)) == 1:
